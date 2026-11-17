@@ -68,69 +68,108 @@ Embeddings run locally with [fastembed](https://github.com/qdrant/fastembed) (`B
 
 ## Using the API
 
-Ask a question:
+The responses below are real output from the running service, using the sample knowledge base.
+
+Ask a question. `thread_id` is optional: leave it out to start a new conversation and the response returns a generated id.
 
 ```bash
 curl -s localhost:8000/chat -H 'content-type: application/json' \
-  -d '{"message": "Can I get a refund on a yearly plan?"}'
+  -d '{"message": "Can I get a refund on a yearly plan renewal?", "thread_id": "live-1"}'
 ```
 
 ```json
 {
-  "thread_id": "3f6c0d5e9a1b4c7d8e2f0a1b2c3d4e5f",
+  "thread_id": "live-1",
   "status": "complete",
-  "reply": "Yes. You can request a refund within 30 days of your first payment ... (source: billing.md)",
+  "reply": "Yes, if you ask **within 14 days of the renewal date**.\n\n**To request it:** go to **Settings → Billing → Request refund**. The money goes back to your original payment method within 5–10 business days.\n\nIf it's been more than 14 days since the renewal, the documentation doesn't mention a refund option. You can still cancel, and you'll keep access until the end of the billing period you've paid for. I can also file a support ticket so someone on the team can look at your case.\n\n(source: billing.md)",
   "sources": ["billing.md"],
   "pending_action": null
 }
 ```
 
-Send the same `thread_id` to continue the conversation.
-
-Ask for something the agent has to act on, and it stops for approval:
+Send the same `thread_id` to continue the conversation. The agent remembers what came before:
 
 ```bash
 curl -s localhost:8000/chat -H 'content-type: application/json' \
-  -d '{"message": "Sync fails with S-401 even after signing in again. Please contact support."}'
+  -d '{"message": "And how long does the money take to arrive?", "thread_id": "live-1"}'
 ```
 
 ```json
 {
-  "thread_id": "9b1e…",
+  "thread_id": "live-1",
+  "status": "complete",
+  "reply": "Refunds go back to your original payment method within **5 to 10 business days**. Depending on your bank or PayPal, it may take a little longer to appear on your statement.\n\n(source: billing.md)",
+  "sources": [],
+  "pending_action": null
+}
+```
+
+`sources` lists the files retrieved during that turn. It is empty here because the agent answered from the conversation without searching again.
+
+Ask for something the agent has to act on, and it stops for approval. Nothing is written yet:
+
+```bash
+curl -s localhost:8000/chat -H 'content-type: application/json' \
+  -d '{"message": "Sync keeps failing with error S-401 even after I signed out and back in twice on my Mac, app version 4.2.1. Please open a support ticket.", "thread_id": "live-2"}'
+```
+
+```json
+{
+  "thread_id": "live-2",
   "status": "needs_approval",
   "reply": null,
-  "sources": ["troubleshooting.md"],
+  "sources": [],
   "pending_action": {
     "action": "create_ticket",
-    "title": "Sync fails with S-401 after re-login",
-    "description": "…"
+    "title": "Sync fails with error S-401 on macOS (v4.2.1)",
+    "description": "User reports that sync keeps failing with error S-401.\nPlatform: Mac\nApp version: 4.2.1\nTroubleshooting already tried: signed out and back in twice. The error keeps coming back.\nUser asked to be put in touch with support."
   }
 }
 ```
 
-Approve or decline it:
+Approve it (or send `"approved": false` to decline), and the run resumes where it paused:
 
 ```bash
 curl -s localhost:8000/chat/approve -H 'content-type: application/json' \
-  -d '{"thread_id": "9b1e…", "approved": true}'
+  -d '{"thread_id": "live-2", "approved": true}'
 ```
+
+```json
+{
+  "thread_id": "live-2",
+  "status": "complete",
+  "reply": "I've filed support ticket **#1**: \"Sync fails with error S-401 on macOS (v4.2.1)\". It says you're on a Mac with version 4.2.1 and that signing out and back in twice didn't fix it. A support engineer will follow up.\n\nThe docs say S-401 means your login session has expired, and their only fix is to sign out and back in. You've already done that, so there's nothing else in the docs to try. […]",
+  "sources": ["api.md", "troubleshooting.md"],
+  "pending_action": null
+}
+```
+
+The reply is shortened here; `[…]` marks the cut.
 
 Stream a reply as server-sent events:
 
 ```bash
 curl -N localhost:8000/chat/stream -H 'content-type: application/json' \
-  -d '{"message": "What are the API rate limits?"}'
+  -d '{"message": "What are the API rate limits on the Team plan?", "thread_id": "live-4"}'
 ```
 
 ```
 event: tool_call
-data: {"name": "search_docs", "args": {"query": "API rate limits"}}
+data: {"name": "search_docs", "args": {"query": "API rate limits Team plan"}}
 
 event: token
-data: {"text": "Each token can make "}
+data: {"text": "On the Team plan, each"}
+
+event: token
+data: {"text": " API token can make **600 requ"}
+
+event: token
+data: {"text": "ests per minute**.\n\n-"}
+
+(18 more token events)
 
 event: done
-data: {"thread_id": "…", "status": "complete"}
+data: {"thread_id": "live-4", "status": "complete"}
 ```
 
 | Endpoint | Purpose |

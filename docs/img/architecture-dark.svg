@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="508" viewBox="0 0 1000 508" role="img" aria-label="How a chat request is answered">
+  <title>How a chat request is answered</title>
+  <rect x="0.5" y="0.5" width="999" height="507" rx="12" fill="#0d1117" stroke="#30363d"/>
+  <text x="28.0" y="40.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#f0f6fc" text-anchor="start">How a chat request is answered</text>
+  <text x="28.0" y="60.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#9198a1" text-anchor="start">The model and tools loop until the model answers. A ticket pauses the graph until the client approves it, and every step is checkpointed in PostgreSQL</text>
+  <text x="28.0" y="80.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#9198a1" text-anchor="start">by thread_id, so the API holds no state.</text>
+  <rect x="530.0" y="106.0" width="197.0" height="252.0" rx="10" fill="#151b23" stroke="#30363d"/>
+  <text x="542.0" y="125.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#9198a1" text-anchor="start">LangGraph agent</text>
+  <rect x="787.0" y="114.0" width="197.0" height="354.0" rx="10" fill="#151b23" stroke="#30363d"/>
+  <text x="799.0" y="133.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#9198a1" text-anchor="start">PostgreSQL</text>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#757e8a"/></marker></defs>
+  <path d="M201.0,182.0 C243.0,182.0 240.0,182.0 282.0,182.0" fill="none" stroke="#757e8a" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M458.0,182.0 C500.0,182.0 497.0,182.0 539.0,182.0" fill="none" stroke="#757e8a" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M628.5,228.0 L628.5,251.0" fill="none" stroke="#757e8a" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M715.0,182.0 C757.0,182.0 754.0,182.0 796.0,182.0" fill="none" stroke="#757e8a" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M715.0,300.0 C757.0,300.0 754.0,300.0 796.0,300.0" fill="none" stroke="#757e8a" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M715.0,300.0 C757.0,300.0 754.0,418.0 796.0,418.0" fill="none" stroke="#757e8a" stroke-width="1.5" marker-end="url(#a)"/>
+  <path d="M201.0,418.0 C500.0,418.0 497.0,418.0 796.0,418.0" fill="none" stroke="#757e8a" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="28.0" y="136.0" width="173.0" height="92.0" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <rect x="29.0" y="144.0" width="3" height="76.0" rx="1.5" fill="#3987e5"/>
+  <text x="42.0" y="161.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#f0f6fc" text-anchor="start">Client</text>
+  <text x="42.0" y="181.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">POST /chat,</text>
+  <text x="42.0" y="197.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">/chat/stream,</text>
+  <text x="42.0" y="213.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">/chat/approve</text>
+  <rect x="28.0" y="372.0" width="173.0" height="92.0" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <rect x="29.0" y="380.0" width="3" height="76.0" rx="1.5" fill="#3987e5"/>
+  <text x="42.0" y="397.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#f0f6fc" text-anchor="start">Ingestion</text>
+  <text x="42.0" y="417.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">ingest.py: heading-aware</text>
+  <text x="42.0" y="433.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">chunks, local bge-small</text>
+  <text x="42.0" y="449.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">embeddings</text>
+  <rect x="285.0" y="144.0" width="173.0" height="76.0" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <rect x="286.0" y="152.0" width="3" height="60.0" rx="1.5" fill="#4d5560"/>
+  <text x="299.0" y="169.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#f0f6fc" text-anchor="start">FastAPI</text>
+  <text x="299.0" y="189.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">api.py: replies, token</text>
+  <text x="299.0" y="205.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">streaming, approvals</text>
+  <rect x="542.0" y="136.0" width="173.0" height="92.0" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <rect x="543.0" y="144.0" width="3" height="76.0" rx="1.5" fill="#4d5560"/>
+  <text x="556.0" y="161.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#f0f6fc" text-anchor="start">model node</text>
+  <text x="556.0" y="181.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">agent.py: any LangChain</text>
+  <text x="556.0" y="197.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">chat model, decides on</text>
+  <text x="556.0" y="213.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">tool calls</text>
+  <rect x="542.0" y="254.0" width="173.0" height="92.0" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <rect x="543.0" y="262.0" width="3" height="76.0" rx="1.5" fill="#4d5560"/>
+  <text x="556.0" y="279.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#f0f6fc" text-anchor="start">tools node</text>
+  <text x="556.0" y="299.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">tools.py: search_docs, and</text>
+  <text x="556.0" y="315.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">create_ticket, which</text>
+  <text x="556.0" y="331.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">pauses for approval</text>
+  <rect x="799.0" y="144.0" width="173.0" height="76.0" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <rect x="800.0" y="152.0" width="3" height="60.0" rx="1.5" fill="#199e70"/>
+  <text x="813.0" y="169.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#f0f6fc" text-anchor="start">Conversation state</text>
+  <text x="813.0" y="189.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">checkpoint after every</text>
+  <text x="813.0" y="205.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">step, keyed by thread_id</text>
+  <rect x="799.0" y="262.0" width="173.0" height="76.0" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <rect x="800.0" y="270.0" width="3" height="60.0" rx="1.5" fill="#199e70"/>
+  <text x="813.0" y="287.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#f0f6fc" text-anchor="start">tickets</text>
+  <text x="813.0" y="307.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">written only after</text>
+  <text x="813.0" y="323.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">/chat/approve</text>
+  <rect x="799.0" y="380.0" width="173.0" height="76.0" rx="8" fill="#0d1117" stroke="#30363d"/>
+  <rect x="800.0" y="388.0" width="3" height="60.0" rx="1.5" fill="#199e70"/>
+  <text x="813.0" y="405.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#f0f6fc" text-anchor="start">chunks</text>
+  <text x="813.0" y="425.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">pgvector column, HNSW</text>
+  <text x="813.0" y="441.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">index</text>
+  <rect x="631.5" y="233.0" width="52.3" height="16" rx="4" fill="#0d1117"/>
+  <text x="634.5" y="245.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#9198a1" text-anchor="start">tool call</text>
+  <rect x="723.8" y="163.0" width="66.3" height="16" rx="4" fill="#0d1117"/>
+  <text x="757.0" y="175.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#9198a1" text-anchor="middle">every step</text>
+  <rect x="728.6" y="281.0" width="56.8" height="16" rx="4" fill="#0d1117"/>
+  <text x="757.0" y="293.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#9198a1" text-anchor="middle">approved</text>
+  <rect x="451.0" y="399.0" width="97.9" height="16" rx="4" fill="#0d1117"/>
+  <text x="500.0" y="411.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#9198a1" text-anchor="middle">embed and store</text>
+  <rect x="28.0" y="488.0" width="3" height="12" rx="1.5" fill="#3987e5"/>
+  <text x="38.0" y="498.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">input</text>
+  <rect x="91.0" y="488.0" width="3" height="12" rx="1.5" fill="#4d5560"/>
+  <text x="101.0" y="498.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">step</text>
+  <rect x="150.5" y="488.0" width="3" height="12" rx="1.5" fill="#199e70"/>
+  <text x="160.5" y="498.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#9198a1" text-anchor="start">stored result</text>
+</svg>

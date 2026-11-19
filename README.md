@@ -13,6 +13,14 @@ The sample knowledge base is the documentation of a fictional note-taking app, N
 
 ## How it works
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/architecture-dark.svg">
+  <img alt="Architecture: a client calls FastAPI (api.py) on /chat, /chat/stream or /chat/approve. The LangGraph agent loops between the model node and the tools node: search_docs reads chunks from pgvector, and create_ticket pauses for approval before writing to the tickets table. Conversation state is checkpointed in PostgreSQL after every step, keyed by thread_id. Ingestion (ingest.py) chunks the Markdown docs by heading, embeds them locally and stores them as chunks." src="docs/img/architecture-light.svg">
+</picture>
+
+<details>
+<summary>The same diagram as text, with more detail</summary>
+
 ```mermaid
 flowchart LR
     U[Client] -->|POST /chat| A[FastAPI]
@@ -35,6 +43,8 @@ flowchart LR
         C
     end
 ```
+
+</details>
 
 1. **Ingestion** splits each document into heading-aware chunks, embeds them locally, and stores them in a `vector` column with an HNSW index.
 2. **A chat request** enters the graph. The model decides whether to call a tool. `search_docs` embeds the question and returns the closest chunks, each labelled with its source file. The model answers from those passages and cites the files.

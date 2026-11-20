@@ -1,6 +1,8 @@
 .PHONY: install db ingest dev test test-integration lint up down
 
 TEST_DATABASE_URL ?= postgresql://postgres:postgres@localhost:5433/docs_agent_test
+# Host port for the API, for both make dev and make up (docker-compose.yml reads it too).
+export API_PORT ?= 8000
 
 install:
 	uv sync
@@ -11,8 +13,8 @@ db: ## start PostgreSQL with pgvector on localhost:5433
 ingest: ## chunk, embed and store the sample knowledge base
 	uv run docs-agent-ingest knowledge_base
 
-dev: ## run the API with auto-reload on http://localhost:8000
-	uv run uvicorn docs_agent.main:app --reload --port 8000
+dev: ## run the API with auto-reload on http://localhost:$(API_PORT)
+	uv run uvicorn docs_agent.main:app --reload --port $(API_PORT)
 
 test: ## unit tests, no database or API key needed
 	uv run pytest

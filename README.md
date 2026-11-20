@@ -70,6 +70,8 @@ Interactive API docs are at <http://localhost:8000/docs>.
 
 To run everything in containers instead, use `make up`.
 
+If port 8000 is taken, set `API_PORT` for either: `make dev API_PORT=8001` or `make up API_PORT=8001`.
+
 ### Choosing a model
 
 `LLM_MODEL` takes any LangChain chat model string in the form `provider:model`, so switching providers is a configuration change. The default is `anthropic:claude-opus-5-5`. For a Google-hosted model on Vertex AI, install `langchain-google-vertexai` and set a `google_vertexai:` model.
